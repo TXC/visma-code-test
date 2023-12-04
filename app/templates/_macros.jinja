@@ -1,0 +1,38 @@
+<!-- Put your reusable template code into macros here -->
+
+{% macro render_pagination(pagination, endpoint) %}
+<nav aria-label="Page navigation example">
+  <div class="lead">
+    <p>{{ pagination.first }} - {{ pagination.last }} of {{ pagination.total }}</p>
+  </div>
+  <ul class="pagination">
+    <li class="page-item">
+        {%- if (pagination.page - 1) > pagination.first %}
+        <a class="page-link" href="{{ url_for(endpoint, page=pagination.page - 1) }}">Previous</a>
+        {% else %}
+        <a class="page-link disabled">Previous</a>
+        {% endif -%}
+    </li>
+    {%- for page in pagination.iter_pages() %}
+      <li class="page-item">
+      {%- if page %}
+        {%- if page == pagination.page %}
+          <a class="page-link active" href="#">{{ page }}</a>
+        {%- else -%}
+          <a class="page-link" href="{{ url_for(endpoint, page=page) }}">{{ page }}</a>
+        {% endif -%}
+      {%- else -%}
+        <span class="page-link disabled ellipsis">&hellip;</span>
+      {%- endif -%}
+      </li>
+    {% endfor -%}
+    <li class="page-item">
+        {%- if pagination.page+1 < pagination.total %}
+        <a class="page-link" href="{{ url_for(endpoint, page=pagination.page + 1) }}">Next</a>
+        {% else %}
+        <a class="page-link disabled">Next</a>
+        {% endif -%}
+    </li>
+  </ul>
+</nav>
+{% endmacro %}

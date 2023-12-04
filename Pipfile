@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+click = "*"
+Flask = ">=3.0.0"
+Flask-SQLAlchemy = "*"
+Flask-WTF = "*"
+itsdangerous = "*"
+Jinja2 = "*"
+MarkupSafe = "*"
+python-dotenv = "*"
+SQLAlchemy = ">=2.0.0"
+Werkzeug = "*"
+WTForms = "*"
+requests = "*"
+faker = "*"
+
+[dev-packages]
+flake8 = "*"
+requests-mock = "*"
